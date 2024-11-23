@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>【干货】零成本小白搭建AI镜像站</title>
+      <link href="/2024/11/23/%E4%B8%8D%E6%98%AF%E5%93%A5%E4%BB%AC%E9%9B%B6%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA/"/>
+      <url>/2024/11/23/%E4%B8%8D%E6%98%AF%E5%93%A5%E4%BB%AC%E9%9B%B6%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>有些人可能经常看到别人的AI镜像站，而自己却因为没有资金，只能干看，今天，我将给大家分享一下我的AI镜像站如何搭建。</p></blockquote><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我们最终的目标是LobeChat+NextAuth+WebRTC服务器，你可以试一试我自己的示例：<a href="https://zhzabcd-chatgpt-web.hf.spacen/">🔗</a>。</p><h3 id="Github，huggingface加速"><a href="#Github，huggingface加速" class="headerlink" title="Github，huggingface加速"></a>Github，huggingface加速</h3><p>在微软商店下载Watt Toolkit，点击左侧边栏的网络加速，把Github加速打开，huggingface加速在Github加速的折叠项中有一个<code>huggingface.co</code>,勾选上开始加速即可</p><h2 id="1-API"><a href="#1-API" class="headerlink" title="1.API"></a>1.API</h2><p>这是整个过程中最难的步骤，很多人因为没有API无法使用AI，针对于有手机号的学生党，你们可以试一试<a href="https://open.bigmodel.cn/">智谱AI</a>，他们的Glm4-flash现在是免费调用，所以注册一个账号，生成一个API就可以使用了(要妥善保管)，当然，我们最终是0成本，所以这里不对付费API做推荐。   </p><h3 id="但是，以上条件是针对有手机号的，那没有手机号呢？"><a href="#但是，以上条件是针对有手机号的，那没有手机号呢？" class="headerlink" title="但是，以上条件是针对有手机号的，那没有手机号呢？"></a>但是，以上条件是针对有手机号的，那没有手机号呢？</h3><p>我们可以用邮箱，虽然智谱要用手机号注册，但我们也不一定要用智谱，嗯。Github的Model marketplace是个好主意，用邮箱注册Github账号，然后在这里<a href="https://github.com/marketplace/models">🔗</a>申请一个访问权限（通常要1周），然后在这里<a href="https://github.com/settings/tokens">🔗</a>创建Token备用。<br>在Github中，也有两个免费OpenAI API的项目，分别是<a href="https://github.com/chatanywhere/GPT_API_free">chatanywhere&#x2F;GPT_API_free</a>和项目2<a href="https://github.com/popjane/free_chatgpt_api">popjane&#x2F;free_chatgpt_api</a>,申请API后要填代理地址，我们可以在仓库的自述文件中找到，填入即可。我还为大家准备了Bing的API代理链接：<a href="https://bingocf.nbing.eu.org/">https://bingocf.nbing.eu.org/</a>   APIKey：Dummy</p><h3 id="接下来，我们要使用huggingface"><a href="#接下来，我们要使用huggingface" class="headerlink" title="接下来，我们要使用huggingface"></a>接下来，我们要使用huggingface</h3><p>在<a href="https://huggingface.co/">huggingface官网</a>注册账号，然后在这里<a href="https://huggingface.co/settings/tokens">🔗</a>创建Token备用，创建Token时将User permissions中的Inference小标题中的3项全部勾选。</p><h2 id="搭建Website"><a href="#搭建Website" class="headerlink" title="搭建Website"></a>搭建Website</h2><p>接下来就可以搭建了，同样使用huggingface,访问<a href="https://huggingface.co/spaces/zhzabcd/chatgpt-web?duplicate=true&visibility=public">https://huggingface.co/spaces/zhzabcd/chatgpt-web?duplicate=true&amp;visibility=public</a>   填入相关的API，其中OpenAI的代理地址填在OPENAI_PROXY_URL ，OPENAI_API_KEY，ZHIPU_API_KEY和HUGGINGFACE_API_KEY分别填入在Github，智谱和huggingface中申请的API，然后点击创建空间，等待空间创建完成，就可以访问了。</p><h2 id="搭建WebRTC服务器"><a href="#搭建WebRTC服务器" class="headerlink" title="搭建WebRTC服务器"></a>搭建WebRTC服务器</h2><p>WebRTC服务器是用于实时通信的，我们在这里使用<a href="https://huggingface.co/spaces/zhzabcd/webrtc-server-of-lobechat?duplicate=true&visibility=public">WebRTC</a>项目，直接复制空间，获得网址。<br>而NextOauth可有可无，因为我们已经配置了访问密码，所以不需要，不过你也可以安装LobeChat的官方文档进行配置<a href="https://lobehub.com/zh/docs/self-hosting/advanced/auth">https://lobehub.com/zh/docs/self-hosting/advanced/auth</a></p><h2 id="有疑问在评论区问哈"><a href="#有疑问在评论区问哈" class="headerlink" title="有疑问在评论区问哈"></a>有疑问在评论区问哈</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 自制教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+            <tag> 干货 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>救赎</title>
       <link href="/2024/11/10/%E6%95%91%E8%B5%8E/"/>
       <url>/2024/11/10/%E6%95%91%E8%B5%8E/</url>
