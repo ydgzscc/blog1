@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>CNN基础入门 | 张涵哲的博客</title><meta name="keywords" content="AI"><meta name="author" content="张涵哲"><meta name="copyright" content="张涵哲"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="CNN基础入门"><meta name="application-name" content="CNN基础入门"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="CNN基础入门"><meta property="og:url" content="https://zhanghanzhe666.github.io/2025/01/05/CNN/index.html"><meta property="og:site_name" content="张涵哲的博客"><meta property="og:description" content="【干货】awa"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg"><meta property="article:author" content="张涵哲"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg"><meta name="description" content="【干货】awa"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://zhanghanzhe666.github.io/2025/01/05/CNN/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"ZHZ的博客","backTitle":"hey，欢迎回来"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: 'https://zhzabcd-mongodb-twikoo-comment.hf.space/',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"2d9140a864ca21248ae79b80d035910c","mailMd5":"zhanghz_1@qq.com"},
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 张涵哲","link":"链接: ","source":"来源: 张涵哲的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: {"enable":true,"delay":100,"shiftDelay":200},
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '张涵哲的博客',
+  title: 'CNN基础入门',
+  postAI: '',
+  pageFillDescription: 'CNN入门：卷积神经网络基础与实践, 作者ZHZ, 时间2025.1.5, 目录, 引言, CNN基础知识, 2.1 CNN概述, 2.2 CNN结构, CNN在图像处理中的应用, 3.1 图像分类, 3.2 图像分割, 3.3 目标检测, CNN的优化与调试技巧, 4.1 模型优化, 4.2 常见问题及解决方案, CNN代码示例, 5.1 构建简单的CNN模型, 5.2 训练与评估CNN模型, 相关文献与资源推荐, 结论, 早期灵感和理论基础, 早期应用和反向传播算法, 深度学习的兴起, 复兴与崛起, 架构演化, 现代应用, 总结, CNN在图像分割中的最新应用和案例研究有哪些？, 如何有效地使用批量归一化来提高CNN模型的训练速度和性能？, 在CNN模型中如何选择合适的卷积核大小和步长以优化特征提取？, 卷积核大小的选择, 步长的选择, 综合考虑, 实践建议, 针对CNN模型的过拟合问题除了Dropout和L2正则化外还有哪些有效的解决方案？入门卷积神经网络基础与实践作者时间目录引言基础知识概述结构在图像处理中的应用图像分类图像分割目标检测的优化与调试技巧模型优化常见问题及解决方案代码示例构建简单的模型训练与评估模型相关文献与资源推荐结论引言卷积神经网络简称是深度学习领域中一种非常重要的模型广泛应用于计算机视觉任务中通过模拟人脑的视觉系统能够自动提取图像中的特征并用于分类分割和检测等任务本文将从的基本概念入手逐步介绍其结构应用及优化技巧并通过代码示例帮助读者更好地理解和实践基础知识概述是一种前馈神经网络特别适用于处理具有网格结构的数据如图像的核心思想是利用卷积层来提取图像的局部特征再通过池化层进行下采样最后通过全连接层进行分类或回归的这种结构使其在图像识别任务中表现出色结构通常由以下几个部分组成输入层接收原始图像数据卷积层通过卷积核提取特征激活函数如增加非线性池化层下采样减少计算量全连接层将卷积层提取的特征映射到最终分类结果在图像处理中的应用图像分类图像分类是最经典的应用之一通过训练一个模型可以识别出输入图像所属的类别例如在数据集上使用深度模型可以实现高精度的图像分类图像分割图像分割的目标是将图像中的每个像素分配到不同的类别中通过逐像素预测的方法可以实现高效的图像分割这种方法在医学影像分析中尤为重要目标检测目标检测不仅需要识别图像中的物体类别还需要定位物体的位置通过结合区域提议网络和后续的分类与回归模块可以实现精确的目标检测的优化与调试技巧模型优化为了提高模型的性能可以采取以下优化措施正则化如和正则化防止过拟合批量归一化加速训练并提高模型稳定性学习率调整使用学习率衰减策略逐步降低学习率常见问题及解决方案过拟合增加正则化项使用或正则化欠拟合增加网络深度或宽度调整学习率训练速度慢使用加速计算优化数据加载流程代码示例构建简单的模型以下是一个简单的模型构建示例训练与评估模型以下是一个简单的训练与评估流程假设我们已经有了数据加载器和在每个结束时评估模型性能相关文献与资源推荐深度学习基础入门篇计算机视觉与卷积神经网络写作入门结论通过本文的学习读者应该能够掌握的基本概念结构及其在图像处理中的应用同时通过代码示例读者可以实际操作并理解模型的构建与训练过程希望这些内容能帮助读者更好地理解和应用技术卷积神经网络的历史和发展可以追溯到世纪年代其起源和发展经历了多个关键事件和阶段早期灵感和理论基础的发展可以追溯到年和通过猫的视觉皮层实验发现信息处理具有层级结构这一发现为的发展奠定了基础年提出了神经认知机模型将和的发现转化为实例早期应用和反向传播算法年提出了第一个基于反向传播和梯度下降训练的卷积神经网络用于手写数字识别等人在贝尔实验室建立了首个真实卷积神经网络模型进一步发展了技术是等人在年提出的第一个实际应用的模型主要用于光学字符识别任务深度学习的兴起年后深度学习开始兴起和的研究证明了深度神经网络的高效训练能力然而在这一时期并未得到广泛应用主要由于训练复杂度高和收敛问题复兴与崛起年在图像分类竞赛中夺冠标志着深度学习的复兴的成功归因于其独特的结构设计包括扩张因果卷积这种卷积方式能够提升感受野同时减少网络连接数和计算量这一时期参数优化策略和新的架构思想成为提升性能的关键如深度架构多任务学习和注意力机制等架构演化的架构经历了多次演化从最初的到后来的等模型这些模型通过引入新的技术如激活函数随机失活瓶颈结构等显著提升了网络性能和训练效率现代应用在计算机视觉自动驾驶人脸识别视频分析医学图像处理等领域有着广泛的应用近年来科学家们继续探索的变种如扩张因果卷积神经网络能够处理更长的序列数据如语音合成总结的发展历程充满了挑战和机遇从最初的实验到如今的广泛应用不断进化为深度学习领域带来了革命性的变化其核心思想是局部连接和权值共享有效减少了网络参数降低了过拟合风险尤其在图像处理上表现出色在图像分割中的最新应用和案例研究有哪些在图像分割中的最新应用和案例研究涵盖了多个领域包括医学成像自动驾驶遥感技术等以下是一些具体的最新应用和案例研究医学成像是一种特别设计用于生物医学图像分割的网络结构具有跳跃连接和对称的收缩和扩展路径它通过一个收缩路径来捕获上下文信息并通过一个对称的扩展路径来精确定位目标系列系列模型通过堆叠多个卷积层来学习抽象特征表示实现像素级的分类和分割这些模型在处理复杂图像适应新场景和自适应变化方面表现出色自动驾驶实例分割在自动驾驶中的应用包括实例分割旨在识别和区分图像中的单个对象例如是一种先进的实例分割方法能够提取像素级的目标实例视频分析用于视频分析任务包括动作识别视频摘要和视频监控这些技术在自动驾驶中用于实时检测和跟踪车辆行人和其他障碍物遥感技术卫星图像分析在卫星图像分析中用于分类和分割地物如建筑物道路植被等这些技术有助于城市规划环境监测和灾害管理工业检测质量控制在工业检测中用于质量控制通过图像分割技术检测产品缺陷裂纹和其他异常情况这在制造业中具有重要的应用价值增强现实用户分割在视频透视增强虚拟中用于用户分割帮助实现更自然的体验人体穿衣图像分割高精度分割通过深度学习方法尤其是可以实现高精度的人体穿衣图像分割这在时尚设计虚拟试衣和个性化推荐等领域有广泛应用最新网络架构是一种用于图像语义分割的新型网络架构通过图卷积网络与全卷积网络的结合提高了分割的准确性和鲁棒性这些案例展示了在图像分割中的广泛应用和最新进展如何有效地使用批量归一化来提高模型的训练速度和性能批量归一化是卷积神经网络中一种重要的技术通过在每一层输入数据上进行标准化处理显著提高了模型的训练速度和性能以下是详细解释如何有效地使用批量归一化来提高模型的训练速度和性能减少内部协变量偏移批量归一化通过对每一批次的数据进行标准化处理减少了内部协变量偏移使得每一层的输入分布更加稳定这有助于加速模型的收敛速度并提高训练的稳定性允许使用更高的学习率由于批量归一化减少了内部协变量偏移模型可以使用更高的初始学习率从而加快收敛速度这对于深度网络尤为重要因为高学习率可以更快地调整权重避免陷入局部最优提高泛化能力批量归一化通过标准化处理使网络能够使用误差更小的损失函数增强模型的泛化能力此外它还确保训练数据与测试数据分布一致避免网络泛化能力下降解决梯度消失或爆炸问题在深度网络中梯度消失或爆炸问题是常见的挑战批量归一化通过调整和缩放网络中每一层的激活值有效缓解了这一问题从而提高了模型的训练效果适用于多种任务和架构批量归一化已被广泛应用于多种深度学习任务和架构中如图像分类目标检测自然语言处理等在这些任务中批量归一化层通常位于激活函数之前以提升模型的训练效果实验验证实验表明在使用批量归一化的情况下模型的训练速度和收敛性显著提高例如在数据集上训练一个较深的卷积神经网络时使用批量归一化的模型比不使用批量归一化的模型具有更快的训练速度和更高的最终精度注意事项尽管批量归一化有诸多优点但在某些特定场景下可能带来负面影响例如在超分辨率处理中层可能导致图像色彩分布被归一化破坏原本的对比度信息影响结果因此在实际应用中需要根据具体任务和数据集的特点进行调整综上所述批量归一化是提高模型训练速度和性能的有效工具在模型中如何选择合适的卷积核大小和步长以优化特征提取在卷积神经网络中选择合适的卷积核大小和步长是优化特征提取的关键步骤以下是基于我搜索到的资料对如何选择这些参数的详细分析卷积核大小的选择卷积核大小的影响较小的卷积核如通常用于提取细节特征具有较高的空间分辨率适合捕捉局部特征较大的卷积核如或可以提取更多全局信息但计算量较大且可能忽略图像中的细节不同结构的卷积核选择结构中所有卷积核均采用大小通过将连续的卷积层替换为卷积层实现了相同的感受野同时减少了参数数量提高了性能模块通过使用不同大小的卷积核如来提取不同尺度的信息以适应多尺度物体检测任务任务需求与卷积核大小的关系对于图像分类任务较小的卷积核如通常能带来更好的性能因为它们能够捕捉到更多的局部特征对于目标检测和分割任务较大的卷积核如或可能更合适因为它们可以增加感受野检测更大物体步长的选择步长的作用步长决定了卷积核在输入数据上滑动的间隔步长为时卷积核每次滑动一个像素步长为时每次滑动两个像素步长的选择需要在保持特征细节和减少计算开销之间找到平衡较大的步长会减少输出特征图的尺寸从而减少计算量但可能会丢失一些细节步长对特征提取的影响较小的步长可以学习更多特征导致输出层更大从而允许更深的网络结构较大的步长会导致特征提取更加有限输出层尺寸更小但可以减少计算量综合考虑模型性能与计算成本选择卷积核大小和步长时需要在模型性能和计算成本之间进行权衡较小的卷积核和较大的步长可以提高计算效率但可能影响模型的性能较大的卷积核和较小的步长可以提高模型性能但会增加计算成本数据集特性较大的数据集可以承受更多的卷积核而小数据集则需谨慎选择以避免过拟合任务需求根据具体任务需求选择合适的卷积核大小和步长例如图像分类任务通常使用较小的卷积核而目标检测和分割任务则可能需要较大的卷积核实践建议实验验证通过实验确定最佳的卷积核大小和步长可以使用不同的配置进行训练和验证选择在验证集上表现最好的配置多尺度特征提取结合使用不同大小的卷积核以兼顾不同尺度的特征提取例如在模块中使用卷积核调整策略根据具体任务和数据集特性逐步调整卷积核大小和步长例如在高分辨率输入图像下适当增大卷积核大小以增强特征提取效果在低分辨率输入图像下减小卷积核大小避免过度提取特征导致过拟合合理选择卷积核大小和步长是构建高效模型的关键优化手段针对模型的过拟合问题除了和正则化外还有哪些有效的解决方案针对模型的过拟合问题除了和正则化外还有以下几种有效的解决方案增加数据量通过增加训练数据的数量模型可以学习到更多样化的数据分布从而避免过拟合这是最直接有效的方法之一通过归一化处理加速训练并防止过拟合尤其在使用等激活函数时能解决现象当模型在验证集上的表现持续下降时提前停止训练避免过拟合数据增强通过收集更多数据对现有数据进行裁剪翻转光照调整或利用生成模型如生成新数据增加训练样本的多样性以提高模型泛化能力调整模型结构减少神经元数量网络层数或增加模型复杂度但需谨慎以免降低模型泛化能力正则化通过在损失函数中加入参数乘以权重矩阵的范数来实现倾向于产生稀疏的权重使权重分布更均匀作为的改进通过将输入分组来实现归一化适用于小批量数据和高维输入提前终止在训练集和验证集上当验证集错误率达到最小值且开始上升时停止训练以避免过拟合',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-05 16:03:37',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/img/touxiang.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://zhanghanzhe666.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.png" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">AI镜像站</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://go-proxy-bingai-d7z.pages.dev/web/#/" title="go-proxy-bingai"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="go-proxy-bingai"/><span class="back-menu-item-text">go-proxy-bingai</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-bingoaaaaa.hf.space/#/chat/dm/1" title="Bingo"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="Bingo"/><span class="back-menu-item-text">Bingo</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-chatgpt-web-run-pre.hf.space/welcome" title="个人多AI镜像网站"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="个人多AI镜像网站"/><span class="back-menu-item-text">个人多AI镜像网站</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-lobechat.hf.space/" title="lobechat"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="lobechat"/><span class="back-menu-item-text">lobechat</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-chatgpt-next-web-bing-run.hf.space" title="Nextchat(BingAI版)"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="Nextchat(BingAI版)"/><span class="back-menu-item-text">Nextchat(BingAI版)</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://bingoai.pages.dev/?dpwa=1" title="ms-copilot-play"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="ms-copilot-play"/><span class="back-menu-item-text">ms-copilot-play</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">张涵哲的博客</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>3</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>1</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">学习<sup>1</sup></a><a href="/tags/%E5%B9%B2%E8%B4%A7/" style="font-size: 1.05rem;">干货<sup>2</sup></a><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.05rem;">随笔<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/05/"><span class="card-archive-list-date">五月 2018</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div><div class="console-btn-item" id="consoleKeyboard" onclick="anzhiyu.keyboardToggle()" title="快捷键开关"><a class="keyboard-switch"><i class="anzhiyufont anzhiyu-icon-keyboard"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/" itemprop="url">AI</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/AI/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>AI</span></a></span></div></div><h1 class="post-title" itemprop="name headline">CNN基础入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-01-04T16:00:00.000Z" title="发表于 2025-01-05 00:00:00">2025-01-05</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-01-05T08:03:37.047Z" title="更新于 2025-01-05 16:03:37">2025-01-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">4.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="CNN基础入门"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="twikoo_visitors" title="访问量"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为苏州"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>苏州</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/01/05/CNN/#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://zhanghanzhe666.github.io/2025/01/05/CNN/"><header><a class="post-meta-categories" href="/categories/AI/" itemprop="url">AI</a><a href="/tags/AI/" tabindex="-1" itemprop="url">AI</a><h1 id="CrawlerTitle" itemprop="name headline">CNN基础入门</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">张涵哲</span><time itemprop="dateCreated datePublished" datetime="2025-01-04T16:00:00.000Z" title="发表于 2025-01-05 00:00:00">2025-01-05</time><time itemprop="dateCreated datePublished" datetime="2025-01-05T08:03:37.047Z" title="更新于 2025-01-05 16:03:37">2025-01-05</time></header><h1 id="CNN入门：卷积神经网络基础与实践"><a href="#CNN入门：卷积神经网络基础与实践" class="headerlink" title="CNN入门：卷积神经网络基础与实践"></a>CNN入门：卷积神经网络基础与实践</h1><h3 id="作者-ZHZ"><a href="#作者-ZHZ" class="headerlink" title="作者:ZHZ"></a>作者:ZHZ</h3><h3 id="时间-2025-1-5"><a href="#时间-2025-1-5" class="headerlink" title="时间:2025.1.5"></a>时间:2025.1.5</h3><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li>引言</li>
+<li>CNN基础知识<ul>
+<li>2.1 CNN概述</li>
+<li>2.2 CNN结构</li>
+</ul>
+</li>
+<li>CNN在图像处理中的应用<ul>
+<li>3.1 图像分类</li>
+<li>3.2 图像分割</li>
+<li>3.3 目标检测</li>
+</ul>
+</li>
+<li>CNN的优化与调试技巧<ul>
+<li>4.1 模型优化</li>
+<li>4.2 常见问题及解决方案</li>
+</ul>
+</li>
+<li>CNN代码示例<ul>
+<li>5.1 构建简单的CNN模型</li>
+<li>5.2 训练与评估CNN模型</li>
+</ul>
+</li>
+<li>相关文献与资源推荐</li>
+<li>结论</li>
+</ol>
+<hr>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>卷积神经网络（Convolutional Neural Network，简称CNN）是深度学习领域中一种非常重要的模型，广泛应用于计算机视觉任务中。CNN通过模拟人脑的视觉系统，能够自动提取图像中的特征，并用于分类、分割和检测等任务。本文将从CNN的基本概念入手，逐步介绍其结构、应用及优化技巧，并通过代码示例帮助读者更好地理解和实践CNN。</p>
+<h2 id="CNN基础知识"><a href="#CNN基础知识" class="headerlink" title="CNN基础知识"></a>CNN基础知识</h2><h3 id="2-1-CNN概述"><a href="#2-1-CNN概述" class="headerlink" title="2.1 CNN概述"></a>2.1 CNN概述</h3><p>CNN是一种前馈神经网络，特别适用于处理具有网格结构的数据，如图像。CNN的核心思想是利用卷积层来提取图像的局部特征，再通过池化层进行下采样，最后通过全连接层进行分类或回归。CNN的这种结构使其在图像识别任务中表现出色。</p>
+<h3 id="2-2-CNN结构"><a href="#2-2-CNN结构" class="headerlink" title="2.2 CNN结构"></a>2.2 CNN结构</h3><p>CNN通常由以下几个部分组成：</p>
+<ul>
+<li><strong>输入层</strong>：接收原始图像数据。</li>
+<li><strong>卷积层</strong>：通过卷积核提取特征。</li>
+<li><strong>激活函数</strong>：如ReLU，增加非线性。</li>
+<li><strong>池化层</strong>：下采样，减少计算量。</li>
+<li><strong>全连接层</strong>：将卷积层提取的特征映射到最终分类结果。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg" alt="10_ Basic CNN"></p>
+<h2 id="CNN在图像处理中的应用"><a href="#CNN在图像处理中的应用" class="headerlink" title="CNN在图像处理中的应用"></a>CNN在图像处理中的应用</h2><h3 id="3-1-图像分类"><a href="#3-1-图像分类" class="headerlink" title="3.1 图像分类"></a>3.1 图像分类</h3><p>图像分类是CNN最经典的应用之一。通过训练一个CNN模型，可以识别出输入图像所属的类别。例如，在ImageNet数据集上，使用深度CNN模型可以实现高精度的图像分类。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/3d5bbc49ddce9a3aa90969a45e5f6455.jpg" alt="Image Classification using Pre-Trained ImageNet Models in TensorFlow ..."></p>
+<h3 id="3-2-图像分割"><a href="#3-2-图像分割" class="headerlink" title="3.2 图像分割"></a>3.2 图像分割</h3><p>图像分割的目标是将图像中的每个像素分配到不同的类别中。CNN通过逐像素预测的方法，可以实现高效的图像分割。这种方法在医学影像分析中尤为重要。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/63d43d6d9c2780f0950f8cd7973c1048.jpg" alt="全卷积网络FCN进行图像分割_基于全卷积网络的图像分割-CSDN博客"></p>
+<h3 id="3-3-目标检测"><a href="#3-3-目标检测" class="headerlink" title="3.3 目标检测"></a>3.3 目标检测</h3><p>目标检测不仅需要识别图像中的物体类别，还需要定位物体的位置。CNN通过结合区域提议网络（RPN）和后续的分类与回归模块，可以实现精确的目标检测。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/6fc43d1b51e556295363309ea831bad8.jpg" alt="2023视觉3D量产元年？最新视觉3D检测综述一览前沿进展！_目标_自动_方法"></p>
+<h2 id="CNN的优化与调试技巧"><a href="#CNN的优化与调试技巧" class="headerlink" title="CNN的优化与调试技巧"></a>CNN的优化与调试技巧</h2><h3 id="4-1-模型优化"><a href="#4-1-模型优化" class="headerlink" title="4.1 模型优化"></a>4.1 模型优化</h3><p>为了提高CNN模型的性能，可以采取以下优化措施：</p>
+<ul>
+<li><strong>正则化</strong>：如Dropout和L2正则化，防止过拟合。</li>
+<li><strong>批量归一化</strong>：加速训练并提高模型稳定性。</li>
+<li><strong>学习率调整</strong>：使用学习率衰减策略，逐步降低学习率。</li>
+</ul>
+<h3 id="4-2-常见问题及解决方案"><a href="#4-2-常见问题及解决方案" class="headerlink" title="4.2 常见问题及解决方案"></a>4.2 常见问题及解决方案</h3><ul>
+<li><strong>过拟合</strong>：增加正则化项，使用Dropout或L2正则化。</li>
+<li><strong>欠拟合</strong>：增加网络深度或宽度，调整学习率。</li>
+<li><strong>训练速度慢</strong>：使用GPU加速计算，优化数据加载流程。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/d0eb7047daa8a1252e04d159790c7139.jpg" alt="CNN和LSTM模型训练流程图 流程图模板_ProcessOn思维导图、流程图"></p>
+<h2 id="CNN代码示例"><a href="#CNN代码示例" class="headerlink" title="CNN代码示例"></a>CNN代码示例</h2><h3 id="5-1-构建简单的CNN模型"><a href="#5-1-构建简单的CNN模型" class="headerlink" title="5.1 构建简单的CNN模型"></a>5.1 构建简单的CNN模型</h3><p>以下是一个简单的CNN模型构建示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleCNN</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(SimpleCNN, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">16</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line">        <span class="variable language_">self</span>.relu = nn.ReLU()</span><br><span class="line">        <span class="variable language_">self</span>.pool = nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line">        <span class="variable language_">self</span>.conv2 = nn.Conv2d(<span class="number">16</span>, <span class="number">32</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc = nn.Linear(<span class="number">32</span> *<span class="number">7</span>* <span class="number">7</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = <span class="variable language_">self</span>.pool(<span class="variable language_">self</span>.relu(<span class="variable language_">self</span>.conv1(x)))</span><br><span class="line">        x = <span class="variable language_">self</span>.pool(<span class="variable language_">self</span>.relu(<span class="variable language_">self</span>.conv2(x)))</span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">32</span> *<span class="number">7</span>* <span class="number">7</span>)</span><br><span class="line">        x = <span class="variable language_">self</span>.fc(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">model = SimpleCNN()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-训练与评估CNN模型"><a href="#5-2-训练与评估CNN模型" class="headerlink" title="5.2 训练与评估CNN模型"></a>5.2 训练与评估CNN模型</h3><p>以下是一个简单的训练与评估流程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设我们已经有了数据加载器 `train_loader` 和 `test_loader`</span></span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.Adam(model.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">    <span class="keyword">for</span> inputs, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        outputs = model(inputs)</span><br><span class="line">        loss = criterion(outputs, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在每个epoch结束时评估模型性能</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        correct = <span class="number">0</span></span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> inputs, labels <span class="keyword">in</span> test_loader:</span><br><span class="line">            outputs = model(inputs)</span><br><span class="line">            _, predicted = torch.<span class="built_in">max</span>(outputs.data, <span class="number">1</span>)</span><br><span class="line">            total += labels.size(<span class="number">0</span>)</span><br><span class="line">            correct += (predicted == labels).<span class="built_in">sum</span>().item()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Epoch [<span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;num_epochs&#125;</span>], Accuracy: <span class="subst">&#123;<span class="number">100</span> * correct / total&#125;</span>%&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/2db4d7162c3da31823200020c459a0c9.jpg" alt="Google 基于卷积神经网络的变异检测方 … zhuanlan.zhihu.com"></p>
+<h2 id="相关文献与资源推荐"><a href="#相关文献与资源推荐" class="headerlink" title="相关文献与资源推荐"></a>相关文献与资源推荐</h2><ul>
+<li><strong>ImageNet classification with deep convolutional neural networks</strong></li>
+<li><strong>深度学习基础入门篇：计算机视觉与卷积神经网络</strong></li>
+<li><strong>Markdown写作入门</strong></li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>通过本文的学习，读者应该能够掌握CNN的基本概念、结构及其在图像处理中的应用。同时，通过代码示例，读者可以实际操作并理解CNN模型的构建与训练过程。希望这些内容能帮助读者更好地理解和应用CNN技术。</p>
+<p>卷积神经网络（CNN）的历史和发展可以追溯到20世纪60年代，其起源和发展经历了多个关键事件和阶段。</p>
+<h3 id="早期灵感和理论基础"><a href="#早期灵感和理论基础" class="headerlink" title="早期灵感和理论基础"></a>早期灵感和理论基础</h3><p>CNN的发展可以追溯到1962年Hubel和Wiesel通过猫的视觉皮层实验发现信息处理具有层级结构，这一发现为CNN的发展奠定了基础。1980年，Fukushima提出了神经认知机模型，将Hubel和Wiesel的发现转化为实例。</p>
+<h3 id="早期应用和反向传播算法"><a href="#早期应用和反向传播算法" class="headerlink" title="早期应用和反向传播算法"></a>早期应用和反向传播算法</h3><p>1989年，Yann LeCun提出了第一个基于反向传播和梯度下降训练的卷积神经网络（CNN），用于手写数字识别。LeCun等人在贝尔实验室建立了首个“真实”卷积神经网络模型，进一步发展了CNN技术。LeNet-5是LeCun等人在1989年提出的第一个实际应用的CNN模型，主要用于光学字符识别（OCR）任务。</p>
+<h3 id="深度学习的兴起"><a href="#深度学习的兴起" class="headerlink" title="深度学习的兴起"></a>深度学习的兴起</h3><p>2000年后，深度学习开始兴起，Geoff Hinton和Ruslan Salakhutdinov的研究证明了深度神经网络的高效训练能力。然而，CNN在这一时期并未得到广泛应用，主要由于训练复杂度高和收敛问题。</p>
+<h3 id="复兴与崛起"><a href="#复兴与崛起" class="headerlink" title="复兴与崛起"></a>复兴与崛起</h3><p>2012年，AlexNet在ImageNet图像分类竞赛中夺冠，标志着深度学习的复兴。AlexNet的成功归因于其独特的结构设计，包括扩张因果卷积，这种卷积方式能够提升感受野同时减少网络连接数和计算量。这一时期，参数优化策略和新的架构思想成为提升CNN性能的关键，如深度架构、多任务学习和注意力机制等。</p>
+<h3 id="架构演化"><a href="#架构演化" class="headerlink" title="架构演化"></a>架构演化</h3><p>CNN的架构经历了多次演化，从最初的LeNet-5到后来的AlexNet、VGGNet、GoogLeNet、ResNet等模型。这些模型通过引入新的技术如ReLU激活函数、随机失活、瓶颈结构等，显著提升了网络性能和训练效率。</p>
+<h3 id="现代应用"><a href="#现代应用" class="headerlink" title="现代应用"></a>现代应用</h3><p>CNN在计算机视觉、自动驾驶、人脸识别、视频分析、医学图像处理等领域有着广泛的应用。近年来，科学家们继续探索CNN的变种，如扩张因果卷积神经网络，能够处理更长的序列数据，如语音合成。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>CNN的发展历程充满了挑战和机遇，从最初的实验到如今的广泛应用，CNN不断进化，为深度学习领域带来了革命性的变化。其核心思想是局部连接和权值共享，有效减少了网络参数，降低了过拟合风险，尤其在图像处理上表现出色。</p>
+<h4 id="CNN在图像分割中的最新应用和案例研究有哪些？"><a href="#CNN在图像分割中的最新应用和案例研究有哪些？" class="headerlink" title="CNN在图像分割中的最新应用和案例研究有哪些？"></a>CNN在图像分割中的最新应用和案例研究有哪些？</h4><p>CNN在图像分割中的最新应用和案例研究涵盖了多个领域，包括医学成像、自动驾驶、遥感技术等。以下是一些具体的最新应用和案例研究：</p>
+<ol>
+<li><p><strong>医学成像</strong>：</p>
+<ul>
+<li><strong>U-Net</strong>：U-Net是一种特别设计用于生物医学图像分割的网络结构，具有跳跃连接和对称的收缩和扩展路径。它通过一个收缩路径来捕获上下文信息，并通过一个对称的扩展路径来精确定位目标。</li>
+<li><strong>DeepLab系列</strong>：DeepLab系列模型通过堆叠多个卷积层来学习抽象特征表示，实现像素级的分类和分割。这些模型在处理复杂图像、适应新场景和自适应变化方面表现出色。</li>
+</ul>
+</li>
+<li><p><strong>自动驾驶</strong>：</p>
+<ul>
+<li><strong>实例分割</strong>：CNN在自动驾驶中的应用包括实例分割，旨在识别和区分图像中的单个对象。例如，Mask R-CNN是一种先进的实例分割方法，能够提取像素级的目标实例。</li>
+<li><strong>视频分析</strong>：CNN用于视频分析任务，包括动作识别、视频摘要和视频监控。这些技术在自动驾驶中用于实时检测和跟踪车辆、行人和其他障碍物。</li>
+</ul>
+</li>
+<li><p><strong>遥感技术</strong>：</p>
+<ul>
+<li><strong>卫星图像分析</strong>：CNN在卫星图像分析中用于分类和分割地物，如建筑物、道路、植被等。这些技术有助于城市规划、环境监测和灾害管理。</li>
+</ul>
+</li>
+<li><p><strong>工业检测</strong>：</p>
+<ul>
+<li><strong>质量控制</strong>：CNN在工业检测中用于质量控制，通过图像分割技术检测产品缺陷、裂纹和其他异常情况。这在制造业中具有重要的应用价值。</li>
+</ul>
+</li>
+<li><p><strong>增强现实（AR）</strong>：</p>
+<ul>
+<li><strong>用户分割</strong>：在视频透视增强虚拟（Video See-Through Augmented Virtuality）中，CNN用于用户分割，帮助实现更自然的AR体验。</li>
+</ul>
+</li>
+<li><p><strong>人体穿衣图像分割</strong>：</p>
+<ul>
+<li><strong>高精度分割</strong>：通过深度学习方法，尤其是CNN，可以实现高精度的人体穿衣图像分割。这在时尚设计、虚拟试衣和个性化推荐等领域有广泛应用。</li>
+</ul>
+</li>
+<li><p><strong>最新网络架构</strong>：</p>
+<ul>
+<li><strong>Graph-FCN</strong>：Graph-FCN是一种用于图像语义分割的新型网络架构，通过图卷积网络（GCN）与全卷积网络（FCN）的结合，提高了分割的准确性和鲁棒性。</li>
+</ul>
+</li>
+</ol>
+<p>这些案例展示了CNN在图像分割中的广泛应用和最新进展。</p>
+<h4 id="如何有效地使用批量归一化来提高CNN模型的训练速度和性能？"><a href="#如何有效地使用批量归一化来提高CNN模型的训练速度和性能？" class="headerlink" title="如何有效地使用批量归一化来提高CNN模型的训练速度和性能？"></a>如何有效地使用批量归一化来提高CNN模型的训练速度和性能？</h4><p>批量归一化（Batch Normalization，BN）是卷积神经网络（CNN）中一种重要的技术，通过在每一层输入数据上进行标准化处理，显著提高了模型的训练速度和性能。以下是详细解释如何有效地使用批量归一化来提高CNN模型的训练速度和性能：</p>
+<ol>
+<li><p><strong>减少内部协变量偏移</strong>：<br>批量归一化通过对每一批次的数据进行标准化处理，减少了内部协变量偏移（Internal Covariate Shift），使得每一层的输入分布更加稳定。这有助于加速模型的收敛速度，并提高训练的稳定性。</p>
+</li>
+<li><p><strong>允许使用更高的学习率</strong>：<br>由于批量归一化减少了内部协变量偏移，模型可以使用更高的初始学习率，从而加快收敛速度。这对于深度网络尤为重要，因为高学习率可以更快地调整权重，避免陷入局部最优。</p>
+</li>
+<li><p><strong>提高泛化能力</strong>：<br>批量归一化通过标准化处理，使网络能够使用误差更小的L2损失函数，增强模型的泛化能力。此外，它还确保训练数据与测试数据分布一致，避免网络泛化能力下降。</p>
+</li>
+<li><p><strong>解决梯度消失或爆炸问题</strong>：<br>在深度网络中，梯度消失或爆炸问题是常见的挑战。批量归一化通过调整和缩放网络中每一层的激活值，有效缓解了这一问题，从而提高了模型的训练效果。</p>
+</li>
+<li><p><strong>适用于多种任务和架构</strong>：<br>批量归一化已被广泛应用于多种深度学习任务和架构中，如图像分类、目标检测、自然语言处理等。在这些任务中，批量归一化层通常位于激活函数之前，以提升模型的训练效果。</p>
+</li>
+<li><p><strong>实验验证</strong>：<br>实验表明，在使用批量归一化的情况下，模型的训练速度和收敛性显著提高。例如，在CIFAR-10数据集上训练一个较深的卷积神经网络时，使用批量归一化的模型比不使用批量归一化的模型具有更快的训练速度和更高的最终精度。</p>
+</li>
+<li><p><strong>注意事项</strong>：<br>尽管批量归一化有诸多优点，但在某些特定场景下可能带来负面影响。例如，在超分辨率处理中，BN层可能导致图像色彩分布被归一化，破坏原本的对比度信息，影响SR结果。因此，在实际应用中需要根据具体任务和数据集的特点进行调整。</p>
+</li>
+</ol>
+<p>综上所述，批量归一化是提高CNN模型训练速度和性能的有效工具。</p>
+<h4 id="在CNN模型中，如何选择合适的卷积核大小和步长以优化特征提取？"><a href="#在CNN模型中，如何选择合适的卷积核大小和步长以优化特征提取？" class="headerlink" title="在CNN模型中，如何选择合适的卷积核大小和步长以优化特征提取？"></a>在CNN模型中，如何选择合适的卷积核大小和步长以优化特征提取？</h4><p>在卷积神经网络（CNN）中，选择合适的卷积核大小和步长是优化特征提取的关键步骤。以下是基于我搜索到的资料，对如何选择这些参数的详细分析：</p>
+<h3 id="卷积核大小的选择"><a href="#卷积核大小的选择" class="headerlink" title="卷积核大小的选择"></a>卷积核大小的选择</h3><ol>
+<li><p><strong>卷积核大小的影响</strong>：</p>
+<ul>
+<li>较小的卷积核（如3x3）通常用于提取细节特征，具有较高的空间分辨率，适合捕捉局部特征。</li>
+<li>较大的卷积核（如5x5或7x7）可以提取更多全局信息，但计算量较大，且可能忽略图像中的细节。</li>
+</ul>
+</li>
+<li><p><strong>不同结构的卷积核选择</strong>：</p>
+<ul>
+<li>VGG结构中，所有卷积核均采用3x3大小，通过将连续的3x3卷积层替换为5x5卷积层，实现了相同的感受野，同时减少了参数数量，提高了性能。</li>
+<li>Inception模块通过使用不同大小的卷积核（如1x1、3x3、5x5）来提取不同尺度的信息，以适应多尺度物体检测任务。</li>
+</ul>
+</li>
+<li><p><strong>任务需求与卷积核大小的关系</strong>：</p>
+<ul>
+<li>对于图像分类任务，较小的卷积核（如3x3）通常能带来更好的性能，因为它们能够捕捉到更多的局部特征。</li>
+<li>对于目标检测和分割任务，较大的卷积核（如5x5或7x7）可能更合适，因为它们可以增加感受野，检测更大物体。</li>
+</ul>
+</li>
+</ol>
+<h3 id="步长的选择"><a href="#步长的选择" class="headerlink" title="步长的选择"></a>步长的选择</h3><ol>
+<li><p><strong>步长的作用</strong>：</p>
+<ul>
+<li>步长决定了卷积核在输入数据上滑动的间隔。步长为1时，卷积核每次滑动一个像素；步长为2时，每次滑动两个像素。</li>
+<li>步长的选择需要在保持特征细节和减少计算开销之间找到平衡。较大的步长会减少输出特征图的尺寸，从而减少计算量，但可能会丢失一些细节。</li>
+</ul>
+</li>
+<li><p><strong>步长对特征提取的影响</strong>：</p>
+<ul>
+<li>较小的步长可以学习更多特征，导致输出层更大，从而允许更深的网络结构。</li>
+<li>较大的步长会导致特征提取更加有限，输出层尺寸更小，但可以减少计算量。</li>
+</ul>
+</li>
+</ol>
+<h3 id="综合考虑"><a href="#综合考虑" class="headerlink" title="综合考虑"></a>综合考虑</h3><ul>
+<li><strong>模型性能与计算成本</strong>：选择卷积核大小和步长时，需要在模型性能和计算成本之间进行权衡。较小的卷积核和较大的步长可以提高计算效率，但可能影响模型的性能；较大的卷积核和较小的步长可以提高模型性能，但会增加计算成本。</li>
+<li><strong>数据集特性</strong>：较大的数据集可以承受更多的卷积核，而小数据集则需谨慎选择以避免过拟合。</li>
+<li><strong>任务需求</strong>：根据具体任务需求选择合适的卷积核大小和步长。例如，图像分类任务通常使用较小的卷积核，而目标检测和分割任务则可能需要较大的卷积核。</li>
+</ul>
+<h3 id="实践建议"><a href="#实践建议" class="headerlink" title="实践建议"></a>实践建议</h3><ol>
+<li><strong>实验验证</strong>：通过实验确定最佳的卷积核大小和步长。可以使用不同的配置进行训练和验证，选择在验证集上表现最好的配置。</li>
+<li><strong>多尺度特征提取</strong>：结合使用不同大小的卷积核，以兼顾不同尺度的特征提取。例如，在Inception模块中使用1x1、3x3、5x5卷积核。</li>
+<li><strong>调整策略</strong>：根据具体任务和数据集特性，逐步调整卷积核大小和步长。例如，在高分辨率输入图像下适当增大卷积核大小以增强特征提取效果；在低分辨率输入图像下减小卷积核大小避免过度提取特征导致过拟合。</li>
+</ol>
+<p>合理选择卷积核大小和步长是构建高效CNN模型的关键优化手段。</p>
+<h4 id="针对CNN模型的过拟合问题，除了Dropout和L2正则化外，还有哪些有效的解决方案？"><a href="#针对CNN模型的过拟合问题，除了Dropout和L2正则化外，还有哪些有效的解决方案？" class="headerlink" title="针对CNN模型的过拟合问题，除了Dropout和L2正则化外，还有哪些有效的解决方案？"></a>针对CNN模型的过拟合问题，除了Dropout和L2正则化外，还有哪些有效的解决方案？</h4><p>针对CNN模型的过拟合问题，除了Dropout和L2正则化外，还有以下几种有效的解决方案：</p>
+<ol>
+<li><p><strong>增加数据量</strong>：通过增加训练数据的数量，模型可以学习到更多样化的数据分布，从而避免过拟合。这是最直接有效的方法之一。</p>
+</li>
+<li><p><strong>Batch Normalization（BN）</strong>  ：通过归一化处理，加速训练并防止过拟合，尤其在使用ReLU等激活函数时，能解决Dead ReLU现象。</p>
+</li>
+<li><p><strong>Early Stopping</strong>：当模型在验证集上的表现持续下降时，提前停止训练，避免过拟合。</p>
+</li>
+<li><p><strong>数据增强（Data Augmentation）</strong>  ：通过收集更多数据、对现有数据进行裁剪、翻转、光照调整或利用生成模型（如GAN）生成新数据，增加训练样本的多样性，以提高模型泛化能力。</p>
+</li>
+<li><p><strong>调整模型结构</strong>：减少神经元数量、网络层数，或增加模型复杂度，但需谨慎，以免降低模型泛化能力。</p>
+</li>
+<li><p><strong>L1正则化</strong>：通过在损失函数中加入参数λ乘以权重矩阵W的L1范数来实现，倾向于产生稀疏的权重，使权重分布更均匀。</p>
+</li>
+<li><p><strong>Group Normalization（GN）</strong>  ：作为Batch Normalization的改进，GN通过将输入分组来实现归一化，适用于小批量数据和高维输入。</p>
+</li>
+<li><p><strong>提前终止（Early Stopping）</strong>  ：在训练集和验证集上，当验证集错误率达到最小值且开始上升时停止训练，以避免过拟合。</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/touxiang.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/touxiang.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">张涵哲</div><div class="post-copyright__author_desc">你信1+1=2还是我是ZHZ?</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://zhanghanzhe666.github.io/2025/01/05/CNN/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://zhanghanzhe666.github.io/2025/01/05/CNN/')">CNN基础入门</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://zhanghanzhe666.github.io/2025/01/05/CNN/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=CNN基础入门&amp;url=https://zhanghanzhe666.github.io/2025/01/05/CNN/&amp;pic=https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhanghanzhe666.github.io" target="_blank">张涵哲的博客</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/AI/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>AI<span class="tagsPageCount">3</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/11/23/%E4%B8%8D%E6%98%AF%E5%93%A5%E4%BB%AC%E9%9B%B6%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://registry.npmmirror.com/@lobehub/assets-favicons/1.5.0/files/assets/og-960x540.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【干货】零成本小白搭建AI镜像站</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2024/09/06/Bing%E9%83%A8%E7%BD%B2/" title="BINGAI使用&#x2F;部署教程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bingai.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-09-06</div><div class="title">BINGAI使用&#x2F;部署教程</div></div></a></div><div><a href="/2024/11/23/%E4%B8%8D%E6%98%AF%E5%93%A5%E4%BB%AC%E9%9B%B6%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA/" title="【干货】零成本小白搭建AI镜像站"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://registry.npmmirror.com/@lobehub/assets-favicons/1.5.0/files/assets/og-960x540.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-11-23</div><div class="title">【干货】零成本小白搭建AI镜像站</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">张涵哲</h1><div class="author-info__desc">你信1+1=2还是我是ZHZ?</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/zhanghanzhe666" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/3493125517478185?spm_id_from=333.337.0.0" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">众所周知，1+1=2，那么你就可以求出1+1=2 =) (ZHZ的废话文学)</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CNN%E5%85%A5%E9%97%A8%EF%BC%9A%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text">CNN入门：卷积神经网络基础与实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E8%80%85-ZHZ"><span class="toc-number">1.0.1.</span> <span class="toc-text">作者:ZHZ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4-2025-1-5"><span class="toc-number">1.0.2.</span> <span class="toc-text">时间:2025.1.5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.3.</span> <span class="toc-text">CNN基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-CNN%E6%A6%82%E8%BF%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 CNN概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-CNN%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 CNN结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">CNN在图像处理中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 图像分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 图像分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3 目标检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.</span> <span class="toc-text">CNN的优化与调试技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.1.</span> <span class="toc-text">4.1 模型优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.2.</span> <span class="toc-text">4.2 常见问题及解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">CNN代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84CNN%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.1 构建简单的CNN模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AF%84%E4%BC%B0CNN%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.2 训练与评估CNN模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%8C%AE%E4%B8%8E%E8%B5%84%E6%BA%90%E6%8E%A8%E8%8D%90"><span class="toc-number">1.7.</span> <span class="toc-text">相关文献与资源推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.8.</span> <span class="toc-text">结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F%E7%81%B5%E6%84%9F%E5%92%8C%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="toc-number">1.8.1.</span> <span class="toc-text">早期灵感和理论基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F%E5%BA%94%E7%94%A8%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95"><span class="toc-number">1.8.2.</span> <span class="toc-text">早期应用和反向传播算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%85%B4%E8%B5%B7"><span class="toc-number">1.8.3.</span> <span class="toc-text">深度学习的兴起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%85%B4%E4%B8%8E%E5%B4%9B%E8%B5%B7"><span class="toc-number">1.8.4.</span> <span class="toc-text">复兴与崛起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%BC%94%E5%8C%96"><span class="toc-number">1.8.5.</span> <span class="toc-text">架构演化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E5%BA%94%E7%94%A8"><span class="toc-number">1.8.6.</span> <span class="toc-text">现代应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.7.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E4%B8%AD%E7%9A%84%E6%9C%80%E6%96%B0%E5%BA%94%E7%94%A8%E5%92%8C%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">1.8.7.1.</span> <span class="toc-text">CNN在图像分割中的最新应用和案例研究有哪些？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E5%9C%B0%E4%BD%BF%E7%94%A8%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96%E6%9D%A5%E6%8F%90%E9%AB%98CNN%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%AD%E7%BB%83%E9%80%9F%E5%BA%A6%E5%92%8C%E6%80%A7%E8%83%BD%EF%BC%9F"><span class="toc-number">1.8.7.2.</span> <span class="toc-text">如何有效地使用批量归一化来提高CNN模型的训练速度和性能？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8CNN%E6%A8%A1%E5%9E%8B%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%8D%B7%E7%A7%AF%E6%A0%B8%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%AD%A5%E9%95%BF%E4%BB%A5%E4%BC%98%E5%8C%96%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%EF%BC%9F"><span class="toc-number">1.8.7.3.</span> <span class="toc-text">在CNN模型中，如何选择合适的卷积核大小和步长以优化特征提取？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E6%A0%B8%E5%A4%A7%E5%B0%8F%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.8.8.</span> <span class="toc-text">卷积核大小的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%95%BF%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.8.9.</span> <span class="toc-text">步长的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%BC%E5%90%88%E8%80%83%E8%99%91"><span class="toc-number">1.8.10.</span> <span class="toc-text">综合考虑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.8.11.</span> <span class="toc-text">实践建议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9CNN%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%BF%87%E6%8B%9F%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%8C%E9%99%A4%E4%BA%86Dropout%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E5%A4%96%EF%BC%8C%E8%BF%98%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9C%89%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="toc-number">1.8.11.1.</span> <span class="toc-text">针对CNN模型的过拟合问题，除了Dropout和L2正则化外，还有哪些有效的解决方案？</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/05/CNN/" title="CNN基础入门"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://oss.metaso.cn/metaso/thumbnail/2b1fb3b87f542f6b3e80561b971bfbf4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNN基础入门"/></a><div class="content"><a class="title" href="/2025/01/05/CNN/" title="CNN基础入门">CNN基础入门</a><time datetime="2025-01-04T16:00:00.000Z" title="发表于 2025-01-05 00:00:00">2025-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/23/%E4%B8%8D%E6%98%AF%E5%93%A5%E4%BB%AC%E9%9B%B6%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA/" title="【干货】零成本小白搭建AI镜像站"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://registry.npmmirror.com/@lobehub/assets-favicons/1.5.0/files/assets/og-960x540.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【干货】零成本小白搭建AI镜像站"/></a><div class="content"><a class="title" href="/2024/11/23/%E4%B8%8D%E6%98%AF%E5%93%A5%E4%BB%AC%E9%9B%B6%E6%88%90%E6%9C%AC%E6%90%AD%E5%BB%BA/" title="【干货】零成本小白搭建AI镜像站">【干货】零成本小白搭建AI镜像站</a><time datetime="2024-11-22T16:00:00.000Z" title="发表于 2024-11-23 00:00:00">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/10/%E6%95%91%E8%B5%8E/" title="救赎"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd0061d6-5321-42b9-92f1-6674494e6693/dg22hes-4ecee239-07a4-4b1d-88b9-4f1700128d9b.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODExIiwicGF0aCI6IlwvZlwvZmQwMDYxZDYtNTMyMS00MmI5LTkyZjEtNjY3NDQ5NGU2NjkzXC9kZzIyaGVzLTRlY2VlMjM5LTA3YTQtNGIxZC04OGI5LTRmMTcwMDEyOGQ5Yi5qcGciLCJ3aWR0aCI6Ijw9MTA4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.GpUGJcAozgQXycTPkmPKeQ1FjSJpbbwdovYcnyx978Y" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="救赎"/></a><div class="content"><a class="title" href="/2024/11/10/%E6%95%91%E8%B5%8E/" title="救赎">救赎</a><time datetime="2024-11-09T16:00:00.000Z" title="发表于 2024-11-10 00:00:00">2024-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/17/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" title="【干货】如何建造有3位一体核打击的宿舍"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/ollam6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【干货】如何建造有3位一体核打击的宿舍"/></a><div class="content"><a class="title" href="/2024/09/17/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" title="【干货】如何建造有3位一体核打击的宿舍">【干货】如何建造有3位一体核打击的宿舍</a><time datetime="2024-09-17T07:54:39.000Z" title="发表于 2024-09-17 15:54:39">2024-09-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/06/Bing%E9%83%A8%E7%BD%B2/" title="BINGAI使用/部署教程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bingai.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BINGAI使用/部署教程"/></a><div class="content"><a class="title" href="/2024/09/06/Bing%E9%83%A8%E7%BD%B2/" title="BINGAI使用/部署教程">BINGAI使用/部署教程</a><time datetime="2024-09-06T07:54:39.000Z" title="发表于 2024-09-06 15:54:39">2024-09-06</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2025 By <a class="footer-bar-link" href="/" title="张涵哲" target="_blank">张涵哲</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://zhanghanzhe666.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.png" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">AI镜像站</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://go-proxy-bingai-d7z.pages.dev/web/#/" title="go-proxy-bingai"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="go-proxy-bingai"/><span class="back-menu-item-text">go-proxy-bingai</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-bingoaaaaa.hf.space/#/chat/dm/1" title="Bingo"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="Bingo"/><span class="back-menu-item-text">Bingo</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-chatgpt-web-run-pre.hf.space/welcome" title="个人多AI镜像网站"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="个人多AI镜像网站"/><span class="back-menu-item-text">个人多AI镜像网站</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-lobechat.hf.space/" title="lobechat"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="lobechat"/><span class="back-menu-item-text">lobechat</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://zhzabcd-chatgpt-next-web-bing-run.hf.space" title="Nextchat(BingAI版)"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="Nextchat(BingAI版)"/><span class="back-menu-item-text">Nextchat(BingAI版)</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://bingoai.pages.dev/?dpwa=1" title="ms-copilot-play"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/bing.webp" alt="ms-copilot-play"/><span class="back-menu-item-text">ms-copilot-play</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>3</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>1</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">学习<sup>1</sup></a><a href="/tags/%E5%B9%B2%E8%B4%A7/" style="font-size: 0.88rem;">干货<sup>2</sup></a><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 0.88rem;">随笔<sup>1</sup></a></div></div><hr/></div></div><div id="keyboard-tips"><div class="keyboardTitle">博客快捷键</div><div class="keybordList"><div class="keybordItem"><div class="keyGroup"><div class="key">shift K</div></div><div class="keyContent"><div class="content">关闭快捷键功能</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift A</div></div><div class="keyContent"><div class="content">打开/关闭中控台</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift M</div></div><div class="keyContent"><div class="content">播放/暂停音乐</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift D</div></div><div class="keyContent"><div class="content">深色/浅色显示模式</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift S</div></div><div class="keyContent"><div class="content">站内搜索</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift R</div></div><div class="keyContent"><div class="content">随机访问</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift H</div></div><div class="keyContent"><div class="content">返回首页</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift F</div></div><div class="keyContent"><div class="content">友链鱼塘</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift L</div></div><div class="keyContent"><div class="content">友链页面</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift P</div></div><div class="keyContent"><div class="content">关于本站</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift I</div></div><div class="keyContent"><div class="content">原版/本站右键菜单</div></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="anzhiyufont anzhiyu-icon-comment-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 张涵哲 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhzabcd-mongodb-twikoo-comment.hf.space/',
+      region: 'true',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.25/dist//twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhzabcd-mongodb-twikoo-comment.hf.space/',
+      region: 'true',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://zhzabcd-mongodb-twikoo-comment.hf.space/',
+        region: 'true',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.25/dist//twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "visitor@anheyu.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'HnvcbTBfJoDmBaP2w'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
